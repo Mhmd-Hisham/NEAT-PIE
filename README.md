@@ -11,10 +11,14 @@ A humble implementation of the NeuroEvolution of Augmenting Topologies[NEAT] alg
 #!/usr/bin/env python3
 
 from pprint import pprint
+import random
 
 from NEATGenome import NEATGenome
 from InnovationTracker import InnovationTracker
 from NEATPopulation import NEATPopulation
+
+# seed the random number generator
+random.seed(12345)
 
 dataset = [({1:0, 2:0}, {3:0}),
            ({1:1, 2:0}, {3:1}),
@@ -73,38 +77,18 @@ pprint(population.top_genome.connections)
 #
 ```
 
-A possible output:
+Benchmark results for the XOR problem:
 ```
-Generation: 1, Accuracy=0%
-Generation: 2, Accuracy=19.8%
-Generation: 3, Accuracy=55.96%
-Generation: 4, Accuracy=55.96%
-Generation: 5, Accuracy=55.96%
-Generation: 6, Accuracy=55.96%
-Generation: 7, Accuracy=55.96%
-Generation: 8, Accuracy=56.19%
-Generation: 9, Accuracy=56.19%
-Generation: 10, Accuracy=56.19%
-Generation: 11, Accuracy=56.19%
-Generation: 12, Accuracy=66.13%
-Generation: 13, Accuracy=85.21%
-Generation: 14, Accuracy=85.21%
-Generation: 15, Accuracy=92.76%
-Generation: 16, Accuracy=92.76%
-Generation: 17, Accuracy=93.24%
-Generation: 18, Accuracy=95.88%
-{0: NodeGene(Node.Bias, 0, 0, '0'),
- 1: NodeGene(Node.Sensor, 1, 0, '1'),
- 2: NodeGene(Node.Sensor, 2, 0, '2'),
- 3: NodeGene(Node.Output, 3, 2, '3'),
- 5: NodeGene(Node.Hidden, 5, 1, '0000001:0000003')}
-{'0000000:0000003': ConnectionGene(0, 3, -1.0, 2, False),
- '0000000:0000005': ConnectionGene(0, 5, -0.749092, 6, False),
- '0000001:0000003': ConnectionGene(1, 3, -2.205837, 0, False),
- '0000001:0000005': ConnectionGene(1, 5, 4, 7, False),
- '0000002:0000003': ConnectionGene(2, 3, -1.809044, 1, False),
- '0000002:0000005': ConnectionGene(2, 5, 4, 12, False),
- '0000005:0000003': ConnectionGene(5, 3, 4, 8, False)}
+Average number of hidden nodes: 1.85
+Standard deviation: 0.9252354327740622
+
+Average number of generations: 32.94
+Standard deviation: 15.049292744883799
+
+Average number of connections: 9.97
+Standard deviation: 3.3798422053896737
+
+Optimal solution found in 42 of 100 runs
 ```
 
 ## Meta
